@@ -33,7 +33,6 @@ public struct SuggestionField: View {
     
     @Environment(\.font) var font
     @Environment(\.disableAutocorrection) var disableAutocorrection
-    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @Binding private var text: String
     @FocusState private var focused: Bool
     private var placeholder: String
@@ -77,13 +76,11 @@ public struct SuggestionField: View {
                     TextField(text + autoComplete(lastWord(of: text)), text: .constant(""))
                         .textFieldStyle(.plain)
                         .font(font)
-                        .dynamicTypeSize(dynamicTypeSize)
                         .disabled(true)
                 }else{
                     TextField(text + autoComplete(text), text: .constant(""))
                         .textFieldStyle(.plain)
                         .font(font)
-                        .dynamicTypeSize(dynamicTypeSize)
                         .disabled(true)
                 }
             }
@@ -92,7 +89,6 @@ public struct SuggestionField: View {
                 .font(font)
                 .focused($focused)
                 .disableAutocorrection(disableAutocorrection)
-                .dynamicTypeSize(dynamicTypeSize)
                 .onSubmit {
                     if divideText{
                         let lastWord = lastWord(of: text)
