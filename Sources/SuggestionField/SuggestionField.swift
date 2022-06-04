@@ -38,34 +38,32 @@ public struct SuggestionField: View {
     private var placeholder: String
     private var autoComplete: (String) -> String
     private var divideText: Bool
-    
-    public init(_ placeholder: String, text: Binding<String>, divide divideText: Bool = false, autoComplete: @escaping (String) -> String){
+
+    public init(_ placeholder: String, text: Binding<String>, divide divideText: Bool = false, words: [String] = [], capitalized: Bool = false, autoComplete: @escaping (String) -> String = { _ in return "" }){
         self.placeholder = placeholder
         self._text = text
         self.divideText = divideText
-        self.autoComplete = autoComplete
-    }
-    
-    public init(_ placeholder: String, text: Binding<String>, divide divideText: Bool = false, words: [String], capitalized: Bool = false){
-        self.placeholder = placeholder
-        self._text = text
-        self.divideText = divideText
-        autoComplete = { input in
-            if input.isEmpty{
-                return ""
-            }
-            for word in words {
-                if capitalized{
-                    if ((capitalized && word.hasPrefix(input)) || (!capitalized && word.lowercased().hasPrefix(input.lowercased())))  && word.count > input.count{
-                        return String(word.suffix(word.count - input.count))
-                    }
-                }else{
-                    if word.lowercased().hasPrefix(input.lowercased()) && word.count > input.count{
-                        return String(word.suffix(word.count - input.count))
+        self.autoComplete = { input in
+            let completion = autoComplete(input)
+            if completion.isEmpty{
+                if input.isEmpty{
+                    return ""
+                }
+                for word in words {
+                    if capitalized{
+                        if ((capitalized && word.hasPrefix(input)) || (!capitalized && word.lowercased().hasPrefix(input.lowercased())))  && word.count > input.count{
+                            return String(word.suffix(word.count - input.count))
+                        }
+                    }else{
+                        if word.lowercased().hasPrefix(input.lowercased()) && word.count > input.count{
+                            return String(word.suffix(word.count - input.count))
+                        }
                     }
                 }
+                return ""
+            }else{
+                return completion
             }
-            return ""
         }
     }
     
