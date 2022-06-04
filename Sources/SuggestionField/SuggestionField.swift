@@ -1,7 +1,39 @@
 import SwiftUI
 
+/// A simple text field for SwiftUI with completion suggestions in the background.
+///
+/// You can create your own suggestion algorithm.
+///```swift
+///struct ProgrammingLanguageField: View{
+///    @State private var programmingLanguage = "C#"
+///    var body: some View{
+///        SuggestionField("Programming Language", text: $programmingLanguage) { input in
+///            if input == "Swift"{
+///                return "UI"
+///            }else if input == "Python"{
+///                return " (no ... it's not a snake)"
+///            }else{
+///                return ""
+///            }
+///        }
+///    }
+///}
+///```
+///Or you can pass an array of suggestions as strings.
+///```swift
+///struct ProgrammingLanguageField: View{
+///    @State private var programmingLanguage = "C#"
+///    let programmingLanguages = ["C", "C#", "C++", "CSS", "HTML", "Java", "JavaScript", "Kotlin", "Objective-C", "Python", "Ruby", "Swift"]
+///    var body: some View{
+///        SuggestionField("Programming Language", text: $programmingLanguage, words: programmingLanguages)
+///    }
+///}
+///```
 public struct SuggestionField: View {
     
+    @Environment(\.font) var font
+    @Environment(\.disableAutocorrection) var disableAutocorrection
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @Binding private var text: String
     @FocusState private var focused: Bool
     private var placeholder: String
@@ -44,16 +76,23 @@ public struct SuggestionField: View {
                 if divideText{
                     TextField(text + autoComplete(lastWord(of: text)), text: .constant(""))
                         .textFieldStyle(.plain)
+                        .font(font)
+                        .dynamicTypeSize(dynamicTypeSize)
                         .disabled(true)
                 }else{
                     TextField(text + autoComplete(text), text: .constant(""))
                         .textFieldStyle(.plain)
+                        .font(font)
+                        .dynamicTypeSize(dynamicTypeSize)
                         .disabled(true)
                 }
             }
             TextField(placeholder, text: $text)
                 .textFieldStyle(.plain)
+                .font(font)
                 .focused($focused)
+                .disableAutocorrection(disableAutocorrection)
+                .dynamicTypeSize(dynamicTypeSize)
                 .onSubmit {
                     if divideText{
                         let lastWord = lastWord(of: text)
