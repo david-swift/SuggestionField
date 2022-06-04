@@ -55,7 +55,7 @@ init(_ placeholder: String, text: Binding<String>, divide divideText: Bool = fal
 The placeholder (_\_: String_) is a string that is showed when the user's input is empty.
 
 ### Text
-The text (_text: String_) stores the user's input.
+The text (_text: Binding<String>_) stores the user's input.
 
 ### Divide
 If divide (_divide: Bool_) is _true_, the suggestions are displayed after every single word.
