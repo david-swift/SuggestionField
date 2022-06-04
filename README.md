@@ -2,7 +2,7 @@
 A simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
 ## Overview
-Use a _SuggestionField_ when you want a TextField but with suggestions for completing the input. 
+Use a _SuggestionField_ when you want a text field but with suggestions for completing the input. 
 
 ### Your own algorithm
 You can create your own suggestion algorithm:
