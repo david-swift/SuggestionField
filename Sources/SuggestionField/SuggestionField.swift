@@ -44,11 +44,11 @@ public struct SuggestionField: View {
         self._text = text
         self.divideText = divideText
         self.autoComplete = { input in
+            if input.isEmpty{
+                return ""
+            }
             let completion = autoComplete(input)
             if completion.isEmpty{
-                if input.isEmpty{
-                    return ""
-                }
                 for word in words {
                     if capitalized{
                         if ((capitalized && word.hasPrefix(input)) || (!capitalized && word.lowercased().hasPrefix(input.lowercased())))  && word.count > input.count{
