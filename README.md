@@ -1,4 +1,4 @@
-# SuggestionField
+# SuggestionFeld
 A simple TextField for SwiftUI with suggestions in the background.
 
 ## Overview
