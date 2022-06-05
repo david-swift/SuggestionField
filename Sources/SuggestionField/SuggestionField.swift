@@ -35,7 +35,7 @@ import SwiftUI
 ///    @State private var programmingLanguage = "C#"
 ///    let programmingLanguages = ["C", "C#", "C++", "CSS", "HTML", "Java", "JavaScript", "Kotlin", "Objective-C", "Python", "Ruby", "Swift"]
 ///    var body: some View{
-///        SuggestionField("Programming Language", text: $programmingLanguage, words: programmingLanguages){ input in
+///        SuggestionField("Programming Language", text: $programmingLanguage, divide: true, words: programmingLanguages){ input in
 ///           if input == "Swift"{
 ///                return "UI"
 ///            }else if input == "Python"{
