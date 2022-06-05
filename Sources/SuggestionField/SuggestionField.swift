@@ -19,13 +19,31 @@ import SwiftUI
 ///    }
 ///}
 ///```
-///Or you can pass an array of suggestions as strings.
+///You can pass an array of suggestions as strings.
 ///```swift
 ///struct ProgrammingLanguageField: View{
 ///    @State private var programmingLanguage = "C#"
 ///    let programmingLanguages = ["C", "C#", "C++", "CSS", "HTML", "Java", "JavaScript", "Kotlin", "Objective-C", "Python", "Ruby", "Swift"]
 ///    var body: some View{
 ///        SuggestionField("Programming Language", text: $programmingLanguage, words: programmingLanguages)
+///    }
+///}
+///```
+///Or you can combine both methods.
+///```swift
+///struct ProgrammingLanguageField: View{
+///    @State private var programmingLanguage = "C#"
+///    let programmingLanguages = ["C", "C#", "C++", "CSS", "HTML", "Java", "JavaScript", "Kotlin", "Objective-C", "Python", "Ruby", "Swift"]
+///    var body: some View{
+///        SuggestionField("Programming Language", text: $programmingLanguage, words: programmingLanguages){
+///           if input == "Swift"{
+///                return "UI"
+///            }else if input == "Python"{
+///                return " (no ... it's not a snake)"
+///            }else{
+///                return ""
+///            }
+///        }
 ///    }
 ///}
 ///```
