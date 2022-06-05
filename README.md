@@ -52,7 +52,7 @@ You can combine the both completion methods. If your own algorithm provides a co
 init(_ placeholder: String, text: Binding<String>, divide divideText: Bool = false, words: [String] = [], capitalized: Bool = false, autoComplete: @escaping (String) -> String = { _ in return "" })
 ```
 ### Placeholder
-The placeholder (__: String_) is a string that is showed when the user's input is empty.
+The placeholder (_: String_) is a string that is showed when the user's input is empty.
 
 ### Text
 The text (_text: Binding\<String\>_) stores the user's input.
