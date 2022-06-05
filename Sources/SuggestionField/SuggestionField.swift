@@ -87,7 +87,7 @@ public struct SuggestionField: View {
     
     public var body: some View {
         ZStack{
-            if focused{
+            Group{
                 if divideText{
                     TextField(text + autoComplete(lastWord(of: text)), text: .constant(""))
                         .textFieldStyle(.plain)
@@ -100,6 +100,7 @@ public struct SuggestionField: View {
                         .disabled(true)
                 }
             }
+            .opacity(focused ? 1 : 0)
             TextField(placeholder, text: $text)
                 .textFieldStyle(.plain)
                 .font(font)
