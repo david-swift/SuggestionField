@@ -87,18 +87,12 @@ public struct SuggestionField: View {
     
     public var body: some View {
         ZStack{
-            if focused{
-                if divideText{
-                    TextField(text + autoComplete(lastWord(of: text)), text: .constant(""))
-                        .textFieldStyle(.plain)
-                        .font(font)
-                        .disabled(true)
-                }else{
-                    TextField(text + autoComplete(text), text: .constant(""))
-                        .textFieldStyle(.plain)
-                        .font(font)
-                        .disabled(true)
-                }
+            let autoCompletion = divideText ? autoComplete(lastWord(of: text)) : autoComplete(text)
+            if focused && !autoCompletion.isEmpty {
+                TextField(text + autoCompletion, text: Binding{ "" } set: { _,_ in })
+                    .textFieldStyle(.plain)
+                    .font(font)
+                    .disabled(true)
             }
             TextField(placeholder, text: $text)
                 .textFieldStyle(.plain)
