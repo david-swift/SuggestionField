@@ -1,7 +1,62 @@
 # SuggestionField
 A simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
+## Example
+Let me show you an example:
+
 ![](https://user-images.githubusercontent.com/106754840/172894412-753f4a21-5f02-4841-bf21-6581e30f4826.mov)
+```swift
+import SuggestionField
+import SwiftUI
+
+struct NamedValue: Identifiable, Equatable {
+    let id = UUID()
+    var name, value: String
+}
+
+struct ContentView: View {
+    @State private var namedValues = [NamedValue(name: "", value: "")]
+    @FocusState private var focusedNamedValue: UUID?
+    let words = ["tiger", "this", "ice", "snake", "SuggestionField"]
+    
+    var body: some View {
+        ScrollView{
+            ForEach($namedValues){ $namedValue in
+                ScrollView(.horizontal){
+                    HStack{
+                        SuggestionField("Name", text: $namedValue.name, divide: true, words: words)
+                            .focused($focusedNamedValue, equals: namedValue.id)
+                        if !namedValue.value.isEmpty || focusedNamedValue == namedValue.id {
+                            Text("=")
+                            SuggestionField("Value", text: $namedValue.value, divide: true, words: words)
+                                .focused($focusedNamedValue, equals: namedValue.id)
+                        }
+                    }
+                    .padding(4)
+                    .background(
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(.secondary.opacity(focusedNamedValue == namedValue.id ? 0.1 : 0))
+                    )
+                    .animation(.easeInOut, value: namedValues)
+                    .animation(.easeInOut, value: focusedNamedValue)
+                }
+            }
+            .padding()
+        }
+        .onChange(of: namedValues) { newValue in
+            withAnimation{
+                if let last = newValue.last{
+                    if last.name != "" || last.value != "" {
+                        namedValues.append(NamedValue(name: "", value: ""))
+                    }
+                }else{
+                    namedValues.append(NamedValue(name: "", value: ""))
+                }
+            }
+        }
+    }
+}
+```
 
 ## Overview
 Use a _SuggestionField_ when you want a text field but with suggestions for completing the input. 
