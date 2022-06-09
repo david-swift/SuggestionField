@@ -2,8 +2,6 @@
 A simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
 ## Example
-Let me show you an example:
-
 ![](https://user-images.githubusercontent.com/106754840/172894412-753f4a21-5f02-4841-bf21-6581e30f4826.mov)
 ```swift
 import SuggestionField
