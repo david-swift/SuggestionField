@@ -83,7 +83,7 @@ struct ProgrammingLanguageField: View{
 ```
 
 ### Words
-You can pass an array of strings with suggestions to the _SuggestionField_
+You can pass an array of strings with suggestions to the _SuggestionField_:
 
 ```swift
 struct ProgrammingLanguageField: View{
