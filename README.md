@@ -1,6 +1,8 @@
 # SuggestionField
 A simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
+![](https://user-images.githubusercontent.com/106754840/172894412-753f4a21-5f02-4841-bf21-6581e30f4826.mov)
+
 ## Overview
 Use a _SuggestionField_ when you want a text field but with suggestions for completing the input. 
 
@@ -24,7 +26,6 @@ struct ProgrammingLanguageField: View{
     }
 }
 ```
-__Video of SuggestionField__
 
 ### Words
 You can pass an array of strings with suggestions to the _SuggestionField_
@@ -41,7 +42,6 @@ struct ProgrammingLanguageField: View{
 }
 
 ```
-__Video of SuggestionField__
 
 ### Combination
 You can combine the both completion methods. If your own algorithm provides a completion, this completion is used, else, one of the words in the array is used.
