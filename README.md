@@ -1,6 +1,61 @@
 # SuggestionField
 A simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
+## Example
+![](https://user-images.githubusercontent.com/106754840/172911999-d8bc9997-08f7-4454-9645-584121baf4ac.mov)
+```swift
+import SuggestionField
+import SwiftUI
+
+struct NamedValue: Identifiable, Equatable {
+    let id = UUID()
+    var name, value: String
+}
+
+struct ContentView: View {
+    @State private var namedValues = [NamedValue(name: "", value: "")]
+    @FocusState private var focusedNamedValue: UUID?
+    let words = ["tiger", "this", "ice", "snake", "SuggestionField"]
+    
+    var body: some View {
+        ScrollView{
+            ForEach($namedValues){ $namedValue in
+                ScrollView(.horizontal){
+                    HStack{
+                        SuggestionField("Name", text: $namedValue.name, divide: true, words: words)
+                            .focused($focusedNamedValue, equals: namedValue.id)
+                        if !namedValue.value.isEmpty || focusedNamedValue == namedValue.id {
+                            Text("=")
+                            SuggestionField("Value", text: $namedValue.value, divide: true, words: words)
+                                .focused($focusedNamedValue, equals: namedValue.id)
+                        }
+                    }
+                    .padding(4)
+                    .background(
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(.secondary.opacity(focusedNamedValue == namedValue.id ? 0.1 : 0))
+                    )
+                    .animation(.easeInOut, value: namedValues)
+                    .animation(.easeInOut, value: focusedNamedValue)
+                }
+            }
+            .padding()
+        }
+        .onChange(of: namedValues) { newValue in
+            withAnimation{
+                if let last = newValue.last{
+                    if last.name != "" || last.value != "" {
+                        namedValues.append(NamedValue(name: "", value: ""))
+                    }
+                }else{
+                    namedValues.append(NamedValue(name: "", value: ""))
+                }
+            }
+        }
+    }
+}
+```
+
 ## Overview
 Use a _SuggestionField_ when you want a text field but with suggestions for completing the input. 
 
@@ -24,10 +79,9 @@ struct ProgrammingLanguageField: View{
     }
 }
 ```
-__Video of SuggestionField__
 
 ### Words
-You can pass an array of strings with suggestions to the _SuggestionField_
+You can pass an array of strings with suggestions to the _SuggestionField_:
 
 ```swift
 struct ProgrammingLanguageField: View{
@@ -41,7 +95,6 @@ struct ProgrammingLanguageField: View{
 }
 
 ```
-__Video of SuggestionField__
 
 ### Combination
 You can combine the both completion methods. If your own algorithm provides a completion, this completion is used, else, one of the words in the array is used.
