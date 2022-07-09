@@ -108,6 +108,9 @@ public struct SuggestionField: View {
                     }
                 }
         }
+        .accessibilityRepresentation {
+            TextField(placeholder, text: $text)
+        }
     }
     
     private func lastWord(of str: String) -> String{
