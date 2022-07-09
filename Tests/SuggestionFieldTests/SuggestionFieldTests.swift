@@ -1,11 +1,13 @@
+import SwiftUI
 import XCTest
 @testable import SuggestionField
 
 final class SuggestionFieldTests: XCTestCase {
-    func testExample() throws {
+    func testSuggestionField() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual("Hello, World!", "Hello, World!")
+        @State var text = ""
+        let _ = SuggestionField("Hello", text: $text, divide: true, capitalized: false)
     }
 }
