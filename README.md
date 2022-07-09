@@ -1,5 +1,5 @@
 # SuggestionField
-A simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
+_SuggestionField_ is a simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
 ## Example
 ![](https://user-images.githubusercontent.com/106754840/172911999-d8bc9997-08f7-4454-9645-584121baf4ac.mov)
