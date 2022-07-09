@@ -93,6 +93,7 @@ public struct SuggestionField: View {
                     .textFieldStyle(.plain)
                     .font(font)
                     .disabled(true)
+                    .accessibilityHidden(true)
             }
             TextField(placeholder, text: $text)
                 .textFieldStyle(.plain)
@@ -107,9 +108,6 @@ public struct SuggestionField: View {
                         text += autoComplete(text)
                     }
                 }
-        }
-        .accessibilityRepresentation {
-            TextField(placeholder, text: $text)
         }
     }
     
