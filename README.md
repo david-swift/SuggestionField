@@ -2,58 +2,57 @@
 _SuggestionField_ is a simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
 ## Example
-![](https://user-images.githubusercontent.com/106754840/172911999-d8bc9997-08f7-4454-9645-584121baf4ac.mov)
+![](https://user-images.githubusercontent.com/106754840/178121504-2b753d7e-4c1f-41ab-98a7-35e4bda77249.mov)
 ```swift
 import SuggestionField
 import SwiftUI
 
-struct NamedValue: Identifiable, Equatable {
-    let id = UUID()
-    var name, value: String
-}
-
 struct ContentView: View {
-    @State private var namedValues = [NamedValue(name: "", value: "")]
-    @FocusState private var focusedNamedValue: UUID?
+    @State private var values: [IdentifiableString] = [.init("")]
+    @FocusState private var focusedValue: UUID?
     let words = ["tiger", "this", "ice", "snake", "SuggestionField"]
     
     var body: some View {
-        ScrollView{
-            ForEach($namedValues){ $namedValue in
-                ScrollView(.horizontal){
-                    HStack{
-                        SuggestionField("Name", text: $namedValue.name, divide: true, words: words)
-                            .focused($focusedNamedValue, equals: namedValue.id)
-                        if !namedValue.value.isEmpty || focusedNamedValue == namedValue.id {
-                            Text("=")
-                            SuggestionField("Value", text: $namedValue.value, divide: true, words: words)
-                                .focused($focusedNamedValue, equals: namedValue.id)
+        ScrollView {
+            ForEach($values) { $value in
+                ScrollView(.horizontal) {
+                    SuggestionField("Value", text: $value.string, divide: true, words: words)
+                        .font(.system(size: 60))
+                        .focused($focusedValue, equals: value.id)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 20)
+                                .foregroundColor(.secondary.opacity(focusedValue == value.id ? 0.1 : 0))
                         }
-                    }
-                    .padding(4)
-                    .background(
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(.secondary.opacity(focusedNamedValue == namedValue.id ? 0.1 : 0))
-                    )
-                    .animation(.easeInOut, value: namedValues)
-                    .animation(.easeInOut, value: focusedNamedValue)
+                        .animation(.easeInOut, value: values)
+                        .animation(.easeInOut, value: focusedValue)
+                        .padding()
                 }
             }
-            .padding()
         }
-        .onChange(of: namedValues) { newValue in
-            withAnimation{
-                if let last = newValue.last{
-                    if last.name != "" || last.value != "" {
-                        namedValues.append(NamedValue(name: "", value: ""))
+        .onChange(of: values) { newValue in
+            withAnimation {
+                if let last = newValue.last {
+                    if !last.string.isEmpty {
+                        values.append(.init(""))
                     }
-                }else{
-                    namedValues.append(NamedValue(name: "", value: ""))
+                } else {
+                    values.append(.init(""))
                 }
             }
         }
     }
 }
+
+struct IdentifiableString: Identifiable, Equatable {
+    let id = UUID()
+    var string: String
+    
+    init(_ string: String) {
+        self.string = string
+    }
+}
+
 ```
 
 ## Overview
