@@ -103,7 +103,7 @@ struct ProgrammingLanguageField: View{
 ```
 
 ### Combination
-You can combine the both completion methods. If your own algorithm provides a completion, this completion is used, else, one of the words in the array is used.
+You can combine the two completion methods. If your own algorithm provides a completion, this completion will be used, else, one of the words in the array will be used.
 
 ## Initializer
 
