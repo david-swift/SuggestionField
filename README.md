@@ -123,7 +123,7 @@ If divide (_divide: Bool_) is _true_, the suggestions are displayed after every 
 The words (_words: [String]_) is an array of strings with all the autocompletion suggestions.
 
 ### Capitalized
-The capitalized bool (_capitalized: Bool_) defines, if capital letters matter or if the suggestion is made without the correct capitalization too.
+The capitalized bool (_capitalized: Bool_) defines, if capital letters matter or if the suggestion is made without the correct capitalization as well.
 
 ### AutoComplete
 AutoComplete (_autoComplete: @escaping (String) -> String_) is the function called when the user changes the input to update the completion suggestion. The parameter is the user's active input (if _divide_ is _true_, it is the last word, else, it is the whole input) and the return value is the new completion suggestion. If there is no suggestion, it should be an empty string.
