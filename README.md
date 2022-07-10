@@ -3,10 +3,15 @@ _SuggestionField_ is a simple text field for SwiftUI with completion suggestions
 
 ## Example
 ![](https://user-images.githubusercontent.com/106754840/178121504-2b753d7e-4c1f-41ab-98a7-35e4bda77249.mov)
+<details>
+
+<summary>Code of example</summary>
+
 ```swift
 import SuggestionField
 import SwiftUI
-
+```
+```swift
 struct ContentView: View {
     @State private var values: [IdentifiableString] = [.init("")]
     @FocusState private var focusedValue: UUID?
@@ -43,7 +48,8 @@ struct ContentView: View {
         }
     }
 }
-
+```
+```swift
 struct IdentifiableString: Identifiable, Equatable {
     let id = UUID()
     var string: String
@@ -52,8 +58,9 @@ struct IdentifiableString: Identifiable, Equatable {
         self.string = string
     }
 }
-
 ```
+
+</details>
 
 ## Overview
 Use a _SuggestionField_ when you want a text field but with suggestions for completing the input. 
