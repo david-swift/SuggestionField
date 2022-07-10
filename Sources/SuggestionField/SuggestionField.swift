@@ -69,7 +69,7 @@ public struct SuggestionField: View {
             if completion.isEmpty{
                 for word in words {
                     if capitalized{
-                        if ((capitalized && word.hasPrefix(input)) || (!capitalized && word.lowercased().hasPrefix(input.lowercased())))  && word.count > input.count{
+                        if word.hasPrefix(input) && word.count > input.count{
                             return String(word.suffix(word.count - input.count))
                         }
                     }else{
