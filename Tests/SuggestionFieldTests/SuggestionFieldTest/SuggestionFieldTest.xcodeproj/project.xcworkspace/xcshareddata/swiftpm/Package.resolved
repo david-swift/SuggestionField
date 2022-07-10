@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "suggestionfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/david-swift/SuggestionField",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5fe360db183f2a21369bf255c52dec339fdd3e37"
+      }
+    }
+  ],
+  "version" : 2
+}
