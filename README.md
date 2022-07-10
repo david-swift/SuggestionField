@@ -1,5 +1,5 @@
 # SuggestionField
-_SuggestionField_ is a simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
+`SuggestionField` is a simple text field for SwiftUI with completion suggestions in the background. The user can accept the suggestions by pressing the enter key.
 
 ## Example
 ![](https://user-images.githubusercontent.com/106754840/178121504-2b753d7e-4c1f-41ab-98a7-35e4bda77249.mov)
@@ -63,7 +63,7 @@ struct IdentifiableString: Identifiable, Equatable {
 </details>
 
 ## Overview
-Use a _SuggestionField_ when you want a text field but with suggestions for completing the input. 
+Use a `SuggestionField` whenever you want a text field but with suggestions for completing the input. 
 
 ### Your own algorithm
 You can create your own suggestion algorithm:
@@ -87,7 +87,7 @@ struct ProgrammingLanguageField: View{
 ```
 
 ### Words
-You can pass an array of strings with suggestions to the _SuggestionField_:
+You can pass an array of strings with suggestions to the `SuggestionField`:
 
 ```swift
 struct ProgrammingLanguageField: View{
@@ -108,23 +108,22 @@ You can combine the both completion methods. If your own algorithm provides a co
 ## Initializer
 
 ```swift
-init(_ placeholder: String, text: Binding<String>, divide divideText: Bool = false, words: [String] = [], capitalized: Bool = false, autoComplete: @escaping (String) -> String = { _ in return "" })
+init(_: String, text: Binding<String>, divide: Bool = false, words: [String] = [], capitalized: Bool = false, autoComplete: @escaping (String) -> String = { _ in return "" })
 ```
 ### Placeholder
-The placeholder (\__: String_) is a string that is showed when the user's input is empty.
+The placeholder (`_: String`) is a string that is visible when the user's input is empty.
 
 ### Text
-The text (_text: Binding\<String\>_) stores the user's input.
+The text (`text: Binding<String>`) stores the user's input.
 
 ### Divide
-If divide (_divide: Bool_) is _true_, the suggestions are displayed after every single word.
+If divide (`divide: Bool`) is `true`, the suggestions are displayed after every single word.
 
 ### Words
-The words (_words: [String]_) is an array of strings with all the autocompletion suggestions.
+The words (`words: [String]`) is an array of strings with the autocompletion suggestions.
 
 ### Capitalized
-The capitalized bool (_capitalized: Bool_) defines, if capital letters matter or if the suggestion is made without the correct capitalization as well.
+The capitalized bool (`capitalized: Bool`) defines, if capital letters matter or if the suggestion is made without the correct capitalization as well.
 
 ### AutoComplete
-AutoComplete (_autoComplete: @escaping (String) -> String_) is the function called when the user changes the input to update the completion suggestion. The parameter is the user's active input (if _divide_ is _true_, it is the last word, else, it is the whole input) and the return value is the new completion suggestion. If there is no suggestion, it should be an empty string.
-
+AutoComplete (`autoComplete: @escaping (String) -> String`) is the function called when the user changes the input to update the completion suggestion. The parameter is the user's active input (if _divide_ is _true_, it is the last word, else, it is the whole input) and the return value is the new completion suggestion. If there is no suggestion, it should be an empty string.
