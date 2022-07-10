@@ -1,6 +1,6 @@
 //
-//  ContentView.swift
-//  SuggestionFieldTest
+//  SuggestionField.swift
+//  SuggestionField
 //
 //  Created by david-swift
 //
