@@ -2,7 +2,7 @@
 //  SuggestionFieldTestApp.swift
 //  SuggestionFieldTest
 //
-//  Created by David Häner on 09.07.22.
+//  Created by david-swift
 //
 
 import SwiftUI
