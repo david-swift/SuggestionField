@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  SuggestionFieldTest
+//
+//  Created by david-swift
+//
+
 import SwiftUI
 
 /// A simple text field for SwiftUI with completion suggestions in the background.
