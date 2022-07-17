@@ -68,17 +68,17 @@ Use a `SuggestionField` whenever you want a text field but with suggestions for 
 ### Your own algorithm
 You can create your own suggestion algorithm:
 ```swift
-struct ProgrammingLanguageField: View{
+struct ProgrammingLanguageField: View {
     
     @State private var programmingLanguage = "C#"
     
     var body: some View{
         SuggestionField("Programming Language", text: $programmingLanguage) { input in
-            if input == "Swift"{
+            if input == "Swift" {
                 return "UI"
-            }else if input == "Python"{
+            } else if input == "Python" {
                 return " (no ... it's not a snake)"
-            }else{
+            }  else {
                 return ""
             }
         }
@@ -90,12 +90,12 @@ struct ProgrammingLanguageField: View{
 You can pass an array of strings with suggestions to the `SuggestionField`:
 
 ```swift
-struct ProgrammingLanguageField: View{
+struct ProgrammingLanguageField: View {
     
     @State private var programmingLanguage = "C#"
     let programmingLanguages = ["C", "C#", "C++", "CSS", "HTML", "Java", "JavaScript", "Kotlin", "Objective-C", "Python", "Ruby", "Swift"]
     
-    var body: some View{
+    var body: some View {
         SuggestionField("Programming Language", text: $programmingLanguage, words: programmingLanguages)
     }
 }
